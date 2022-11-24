@@ -27,7 +27,6 @@ function sortPokemons(argument){
 
     } else {
         console.log("ingresar ARGUMENTO VALIDO valido")
-
     }
 }
 
@@ -80,24 +79,56 @@ function setDamage(index){
     }
 }
 
-//8
-function sumadameges(){
-   
+
+//9
+const root = document.getElementById("root")
+const ul = document.createElement("ul")
+root.append(ul)
+
+for(let i = 0; i<pokemons.length; i++){
+    const li = document.createElement("li")
+    li.textContent = pokemons[i].name
+    ul.append(li)
 
 }
 
-pokemons.pokemonmaster.sort((a,b) => {a.base_damage - b.base_damage})
+//10
+const roots = document.getElementById("root")
+const table = document.createElement("table")
+table.classList.add("default")
+table.setAttribute("border", "1")
+root.append(table)
+ 
+const tr = document.createElement("tr")
+ 
+table.append(tr)
+for(const prop in pokemons[0]){
+    const th = document.createElement("th")
+    th.textContent = prop
+    th.style.cursor = "pointer"
 
-console.log(pokemons)
+    th.addEventListener("click", () => {
 
-pokemons.pokemonmaster.sort((a,b) => {a.max_damege - b.max_damage})
+        sortPokemons(prop)
+        table.innerHTML = ""
+        table.append(tr)
+        createTableBody()
+    })
+    tr.append(th)
+}
+ 
+function createTableBody(){
+    for(const index in pokemons){
+        const trb = document.createElement("tr")
 
-console.log(pokemons)
-
-//pruebas
-
-
-
+        for(const prop in pokemons[index]){
+            const td = document.createElement("td")
+            td.textContent = pokemons[index][prop]
+            trb.append(td)
+        }
+        table.append(trb)
+    }
+}
 
 
 //1. Ordernar los pokemons por base_damage de menor a mayor.
@@ -119,3 +150,11 @@ console.log(pokemons)
  
 //8. Nuestro Pokemon Master quiere estar preparado para pelear, para ello necesita que lo apoyes a ordenar sus pokemons. El quiere que sus pokemons se ordenen de manera
 // que el que tenga un mayor valor posible de base_damage + max_damage sea el que este primero en la lista y asi sucesivamente.*/
+
+//9. Crear una lista desordenada de Pokemons en nuestro documento HTML
+
+//10. Utilizando javascript crear una tabla de pokemons con las siguientes columnas: id, name, type, base_damage, base_hp, speed
+
+//11. Utilizando javascript modifica el codigo creado en el ejecicio anterior y agrega un evento que permita ordenar los pokemons haciendo click en sus encabezados.
+ 
+//12. Corrige la function sortPokemons para que acepte ordenarlos segun id y name.
